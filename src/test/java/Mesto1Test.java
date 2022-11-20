@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 public class Mesto1Test {
-    String bearerToken = "сюда_впиши_свой_токен";
+    String bearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzI5NDRiYmQzYjg2YTAwM2Q2N2QxZDUiLCJpYXQiOjE2Njg5MzcyODIsImV4cCI6MTY2OTU0MjA4Mn0.ABP7w-KtJxuUHGjFWAk8I4v1yf5jNArOIwjVH9PJImc";
 
     @Before
     public void setUp() {
@@ -17,8 +17,8 @@ public class Mesto1Test {
     }
 
     @Test
-    @DisplayName("Add a new photo")
-    @Description("This test is for adding a new photo to Mesto.")
+    //@DisplayName("Add a new photo")
+   // @Description("This test is for adding a new photo to Mesto.")
     public void addNewPhoto() {
         given()
                 .header("Content-type", "application/json") // Передаём Content-type в заголовке для указания типа файла
@@ -29,8 +29,8 @@ public class Mesto1Test {
     }
 
     @Test
-    @DisplayName("Like the first photo")
-    @Description("This test is for liking the first photo on Mesto.")
+   //@DisplayName("Like the first photo")
+   // @Description("This test is for liking the first photo on Mesto.")
     public void likeTheFirstPhoto() {
         String photoId = getTheFirstPhotoId();
 
@@ -38,7 +38,7 @@ public class Mesto1Test {
         deleteLikePhotoById(photoId);
     }
 
-    @Step("Take the first photo from the list")
+    //@Step("Take the first photo from the list")
     private String getTheFirstPhotoId() {
         // Получение списка фотографий и выбор первой из него
         return given()
@@ -47,7 +47,7 @@ public class Mesto1Test {
                 .then().extract().body().path("data[0]._id"); // Получаем ID фотографии из массива данных
     }
 
-    @Step("Like a photo by id")
+    //@Step("Like a photo by id")
     private void likePhotoById(String photoId) {
         // Лайк фотографии по photoId
         given()
@@ -56,7 +56,7 @@ public class Mesto1Test {
                 .then().assertThat().statusCode(200); // Проверяем, что сервер вернул код 200
     }
 
-    @Step("Delete like from the photo by id")
+    //@Step("Delete like from the photo by id")
     private void deleteLikePhotoById(String photoId) {
         // Снять лайк с фотографии по photoId
         given()
